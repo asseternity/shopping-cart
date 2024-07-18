@@ -4,12 +4,15 @@ import Card from '../[comp] - Card/Card';
 
 const mockProduct = {
   name: 'test1',
+  price: 10,
 };
 const mockProduct2 = {
   name: 'test2',
+  price: 20,
 };
 const mockProduct3 = {
   name: 'test3',
+  price: 30,
 };
 
 const Shop = () => {
@@ -21,8 +24,12 @@ const Shop = () => {
     justifyContent: 'space-between',
   };
 
-  const addToCart = (product) => {
-    setCartItems([...cartItems, product]);
+  const addToCart = (product, productAmount) => {
+    let cartAdditions = [];
+    for (let i = 0; i < productAmount; i++) {
+      cartAdditions.push(product);
+    }
+    setCartItems([...cartItems, ...cartAdditions]);
   };
 
   return (
@@ -35,18 +42,9 @@ const Shop = () => {
         </div>
       </div>
       <p>I am shop</p>
-      <Card product={mockProduct} />
-      <button onClick={(mockProduct) => addToCart(mockProduct)}>
-        Add {mockProduct.name} to cart
-      </button>
-      <Card product={mockProduct2} />
-      <button onClick={(mockProduct2) => addToCart(mockProduct2)}>
-        Add {mockProduct2.name} to cart
-      </button>
-      <Card product={mockProduct3} />
-      <button onClick={(mockProduct3) => addToCart(mockProduct3)}>
-        Add {mockProduct3.name} to cart
-      </button>
+      <Card product={mockProduct} addToCartMethod={addToCart} />
+      <Card product={mockProduct2} addToCartMethod={addToCart} />
+      <Card product={mockProduct3} addToCartMethod={addToCart} />
     </div>
   );
 };
