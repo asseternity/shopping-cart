@@ -1,19 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import NavBar from '../[comp] - NavBar/NavBar';
 import Card from '../[comp] - Card/Card';
 
-const mockProduct = {
-  name: 'test1',
-};
-const mockProduct2 = {
-  name: 'test2',
-};
-const mockProduct3 = {
-  name: 'test3',
-};
-
 const Shop = () => {
   const [cartItems, setCartItems] = useState([]);
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(null);
+  const [error, setError] = useState(null);
+  const [price, setPrice] = useState(0);
+
+  useEffect(() => {
+    fetch('https://fakestoreapi.com/products/1').then((response) =>
+      response.json().then((response) => {
+        setData(response);
+      })
+    );
+  }, []);
 
   const topbarStyle = {
     display: 'flex',
@@ -21,8 +23,15 @@ const Shop = () => {
     justifyContent: 'space-between',
   };
 
-  const addToCart = (product) => {
-    setCartItems([...cartItems, product]);
+  const addToCart = (product, productAmount) => {
+    let cartAdditions = [];
+    let newTotalPrice = price;
+    for (let i = 0; i < productAmount; i++) {
+      cartAdditions.push(product);
+      newTotalPrice += product.price;
+    }
+    setCartItems([...cartItems, ...cartAdditions]);
+    setPrice(newTotalPrice);
   };
 
   return (
@@ -30,23 +39,19 @@ const Shop = () => {
       <div style={topbarStyle}>
         <NavBar currentTabNameString="home" />
         <div>
+          <button>${price}</button>
           <button>{cartItems.length}</button>
           <button>Checkout</button>
         </div>
       </div>
       <p>I am shop</p>
-      <Card product={mockProduct} />
-      <button onClick={(mockProduct) => addToCart(mockProduct)}>
-        Add {mockProduct.name} to cart
-      </button>
-      <Card product={mockProduct2} />
-      <button onClick={(mockProduct2) => addToCart(mockProduct2)}>
-        Add {mockProduct2.name} to cart
-      </button>
-      <Card product={mockProduct3} />
-      <button onClick={(mockProduct3) => addToCart(mockProduct3)}>
-        Add {mockProduct3.name} to cart
-      </button>
+      {data && (
+        <div>
+          <Card product={data} addToCartMethod={addToCart} />
+          <Card product={data} addToCartMethod={addToCart} />
+          <Card product={data} addToCartMethod={addToCart} />
+        </div>
+      )}
     </div>
   );
 };
