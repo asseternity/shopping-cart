@@ -23,13 +23,14 @@ const Card = ({ product, addToCartMethod }) => {
   return (
     <div style={cardStyle}>
       <h2>{product.title}</h2>
-      <p>${product.description}</p>
+      <p>{product.description}</p>
       <p>${product.price}</p>
       <img src={product.image} style={{ width: '250px' }} />
       <br />
       <button onClick={incrementDown}>{'<'}</button>
       <input type="number" value={productAmount} onChange={handleInputChange} />
       <button onClick={incrementUp}>{'>'}</button>
+      <br />
       <button onClick={() => addToCartMethod(product, productAmount)}>
         Add {product.title} to cart
       </button>

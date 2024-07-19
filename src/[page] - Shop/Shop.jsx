@@ -10,11 +10,13 @@ const Shop = () => {
   const [price, setPrice] = useState(0);
 
   useEffect(() => {
-    fetch('https://fakestoreapi.com/products/1').then((response) =>
-      response.json().then((response) => {
+    fetch('https://fakestoreapi.com/products/1')
+      .then((response) => response.json())
+      .then((response) => {
         setData(response);
       })
-    );
+      .catch((error) => setError(error))
+      .finally(() => setLoading(false));
   }, []);
 
   const topbarStyle = {
@@ -33,6 +35,19 @@ const Shop = () => {
     setCartItems([...cartItems, ...cartAdditions]);
     setPrice(newTotalPrice);
   };
+
+  if (error)
+    return (
+      <div>
+        <h1>A network error was encountered</h1>
+      </div>
+    );
+  if (loading)
+    return (
+      <div>
+        <h1>Loading...</h1>
+      </div>
+    );
 
   return (
     <div>
