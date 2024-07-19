@@ -1,22 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import NavBar from '../[comp] - NavBar/NavBar';
 import Card from '../[comp] - Card/Card';
 
-const mockProduct = {
-  name: 'test1',
-  price: 10,
-};
-const mockProduct2 = {
-  name: 'test2',
-  price: 20,
-};
-const mockProduct3 = {
-  name: 'test3',
-  price: 30,
-};
-
 const Shop = () => {
   const [cartItems, setCartItems] = useState([]);
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(null);
+  const [error, setError] = useState(null);
+  const [price, setPrice] = useState(0);
+
+  useEffect(() => {
+    fetch('https://fakestoreapi.com/products/1').then((response) =>
+      response.json().then((response) => {
+        setData(response);
+      })
+    );
+  }, []);
 
   const topbarStyle = {
     display: 'flex',
@@ -26,10 +25,13 @@ const Shop = () => {
 
   const addToCart = (product, productAmount) => {
     let cartAdditions = [];
+    let newTotalPrice = price;
     for (let i = 0; i < productAmount; i++) {
       cartAdditions.push(product);
+      newTotalPrice += product.price;
     }
     setCartItems([...cartItems, ...cartAdditions]);
+    setPrice(newTotalPrice);
   };
 
   return (
@@ -37,14 +39,19 @@ const Shop = () => {
       <div style={topbarStyle}>
         <NavBar currentTabNameString="home" />
         <div>
+          <button>${price}</button>
           <button>{cartItems.length}</button>
           <button>Checkout</button>
         </div>
       </div>
       <p>I am shop</p>
-      <Card product={mockProduct} addToCartMethod={addToCart} />
-      <Card product={mockProduct2} addToCartMethod={addToCart} />
-      <Card product={mockProduct3} addToCartMethod={addToCart} />
+      {data && (
+        <div>
+          <Card product={data} addToCartMethod={addToCart} />
+          <Card product={data} addToCartMethod={addToCart} />
+          <Card product={data} addToCartMethod={addToCart} />
+        </div>
+      )}
     </div>
   );
 };
