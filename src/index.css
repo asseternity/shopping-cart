@@ -1,0 +1,27 @@
+:root {
+  --beige: #b79674;
+  --backgroundBlue: #191f40;
+}
+
+@font-face {
+  font-family: 'Lexend';
+  src: url(' ../src/[assets] - Fonts/Lexend-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+html,
+button,
+input {
+  font-family: 'Lexend';
+}
+
+.underlineable:hover {
+  text-decoration: underline;
+}
+
+.card_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 350px);
+  justify-content: center;
+}
