@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import NavBar from '../[comp] - NavBar/NavBar';
 import Card from '../[comp] - Card/Card';
+import NavButton from '../[comp] - Styled Comps/NavButton';
+import ProductCard from '../[comp] - Styled Comps/ProductCard';
+import banner from '../[assets] - Images/pexels-kseniachernaya-3965545.jpg';
 
 const Shop = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -10,7 +13,7 @@ const Shop = () => {
   const [price, setPrice] = useState(0);
 
   useEffect(() => {
-    fetch('https://fakestoreapi.com/products/1')
+    fetch('https://fakestoreapi.com/products/')
       .then((response) => response.json())
       .then((response) => {
         setData(response);
@@ -52,19 +55,62 @@ const Shop = () => {
   return (
     <div>
       <div style={topbarStyle}>
-        <NavBar currentTabNameString="home" />
+        <NavBar currentTabNameString="shop" />
         <div>
-          <button>${price}</button>
-          <button>{cartItems.length}</button>
-          <button>Checkout</button>
+          <NavButton>${price} | </NavButton>
+          <NavButton>🛒: {cartItems.length} |</NavButton>
+          <NavButton>Checkout</NavButton>
         </div>
       </div>
-      <p>I am shop</p>
+      <div
+        style={{
+          height: '400px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundImage: `url(${banner})`,
+          backgroundSize: 'cover',
+          marginBottom: '40px',
+          marginTop: '40px',
+        }}
+      >
+        <h1>Store</h1>
+      </div>
       {data && (
-        <div>
-          <Card product={data} addToCartMethod={addToCart} />
-          <Card product={data} addToCartMethod={addToCart} />
-          <Card product={data} addToCartMethod={addToCart} />
+        <div className="card_container">
+          <ProductCard>
+            <Card product={data[1]} addToCartMethod={addToCart} />
+          </ProductCard>
+          <ProductCard>
+            <Card product={data[2]} addToCartMethod={addToCart} />
+          </ProductCard>
+          <ProductCard>
+            <Card product={data[3]} addToCartMethod={addToCart} />
+          </ProductCard>
+          <ProductCard>
+            <Card product={data[15]} addToCartMethod={addToCart} />
+          </ProductCard>
+          <ProductCard>
+            <Card product={data[5]} addToCartMethod={addToCart} />
+          </ProductCard>
+          <ProductCard>
+            <Card product={data[6]} addToCartMethod={addToCart} />
+          </ProductCard>
+          <ProductCard>
+            <Card product={data[7]} addToCartMethod={addToCart} />
+          </ProductCard>
+          <ProductCard>
+            <Card product={data[8]} addToCartMethod={addToCart} />
+          </ProductCard>
+          <ProductCard>
+            <Card product={data[9]} addToCartMethod={addToCart} />
+          </ProductCard>
+          <ProductCard>
+            <Card product={data[10]} addToCartMethod={addToCart} />
+          </ProductCard>
+          <ProductCard>
+            <Card product={data[11]} addToCartMethod={addToCart} />
+          </ProductCard>
         </div>
       )}
     </div>

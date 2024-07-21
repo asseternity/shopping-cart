@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
+import NavButton from '../[comp] - Styled Comps/NavButton';
 
 const NavBar = ({ currentTabNameString }) => {
   const currentStyle = {
-    color: 'red',
+    color: 'var(--beige)',
   };
 
   let homeButtonStyle = {};
@@ -22,10 +23,14 @@ const NavBar = ({ currentTabNameString }) => {
   return (
     <div>
       <Link to="/">
-        <button style={homeButtonStyle}>Home</button>
+        <NavButton className="underlineable" style={homeButtonStyle}>
+          Home
+        </NavButton>
       </Link>
       <Link to="/shop">
-        <button style={shopButtonStyle}>Shop</button>
+        <NavButton className="underlineable" style={shopButtonStyle}>
+          Shop
+        </NavButton>
       </Link>
     </div>
   );

@@ -1,12 +1,8 @@
 import { useState } from 'react';
+import CartButton from '../[comp] - Styled Comps/CartButton';
 
 const Card = ({ product, addToCartMethod }) => {
   const [productAmount, setProductAmount] = useState(1);
-
-  const cardStyle = {
-    padding: '50px',
-    border: '1px solid black',
-  };
 
   const handleInputChange = (e) => {
     setProductAmount(e.target.value);
@@ -21,19 +17,49 @@ const Card = ({ product, addToCartMethod }) => {
   };
 
   return (
-    <div style={cardStyle}>
-      <h2>{product.title}</h2>
-      <p>{product.description}</p>
-      <p>${product.price}</p>
-      <img src={product.image} style={{ width: '250px' }} />
+    <div>
+      <img
+        src={product.image}
+        style={{ height: '250px', width: '250px', objectFit: 'contain' }}
+      />
+      <div style={{ height: '50px' }}>
+        <h2>{product.title}</h2>
+      </div>
+      <div style={{ height: '130px' }}>
+        <p>{product.description}</p>
+      </div>
+      <div style={{ height: '50px' }}>
+        <p>${product.price}</p>
+      </div>
       <br />
-      <button onClick={incrementDown}>{'<'}</button>
-      <input type="number" value={productAmount} onChange={handleInputChange} />
-      <button onClick={incrementUp}>{'>'}</button>
-      <br />
-      <button onClick={() => addToCartMethod(product, productAmount)}>
-        Add {product.title} to cart
-      </button>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <CartButton onClick={incrementDown}>{'<'}</CartButton>
+          <input
+            type="number"
+            value={productAmount}
+            onChange={handleInputChange}
+          />
+          <CartButton onClick={incrementUp}>{'>'}</CartButton>
+        </div>
+        <br />
+        <CartButton onClick={() => addToCartMethod(product, productAmount)}>
+          Add to cart
+        </CartButton>
+      </div>
     </div>
   );
 };
