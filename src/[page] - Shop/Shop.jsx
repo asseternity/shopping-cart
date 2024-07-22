@@ -3,7 +3,7 @@ import NavBar from '../[comp] - NavBar/NavBar';
 import Card from '../[comp] - Card/Card';
 import NavButton from '../[comp] - Styled Comps/NavButton';
 import ProductCard from '../[comp] - Styled Comps/ProductCard';
-import banner from '../[assets] - Images/pexels-kseniachernaya-3965545.jpg';
+import banner from '../assets_images/pexels-kseniachernaya-3965545.jpg';
 
 const Shop = () => {
   const [cartItems, setCartItems] = useState([]);

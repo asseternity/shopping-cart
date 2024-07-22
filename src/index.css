@@ -5,7 +5,7 @@
 
 @font-face {
   font-family: 'Lexend';
-  src: url(' ../src/[assets] - Fonts/Lexend-Regular.ttf') format('truetype');
+  src: url('./assets_fonts/Lexend-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }

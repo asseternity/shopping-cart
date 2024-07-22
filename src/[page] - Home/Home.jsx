@@ -1,5 +1,5 @@
 import NavBar from '../[comp] - NavBar/NavBar';
-import banner from '../[assets] - Images/pexels-matthew-montrone-230847-1179229.jpg';
+import banner from '../assets_images/pexels-matthew-montrone-230847-1179229.jpg';
 
 const Home = () => {
   return (
