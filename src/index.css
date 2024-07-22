@@ -24,4 +24,18 @@ input {
   display: grid;
   grid-template-columns: repeat(auto-fit, 350px);
   justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.shop_banner {
+  color: black;
+}
+
+@media screen and (max-width: 500px) {
+  .shop_banner {
+    color: white;
+  }
 }

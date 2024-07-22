@@ -18,10 +18,18 @@ const Card = ({ product, addToCartMethod }) => {
 
   return (
     <div>
-      <img
-        src={product.image}
-        style={{ height: '250px', width: '250px', objectFit: 'contain' }}
-      />
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <img
+          src={product.image}
+          style={{ height: '250px', width: '250px', objectFit: 'contain' }}
+        />
+      </div>
       <div style={{ height: '50px' }}>
         <h2>{product.title}</h2>
       </div>
