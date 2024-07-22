@@ -57,7 +57,7 @@ const Shop = () => {
       <div style={topbarStyle}>
         <NavBar currentTabNameString="shop" />
         <div>
-          <NavButton>${price} | </NavButton>
+          <NavButton>${price.toFixed(2)} | </NavButton>
           <NavButton>🛒: {cartItems.length} |</NavButton>
           <NavButton>Checkout</NavButton>
         </div>
@@ -74,10 +74,18 @@ const Shop = () => {
           marginTop: '40px',
         }}
       >
-        <h1>Store</h1>
+        <h1 className="shop_banner">Store</h1>
       </div>
       {data && (
-        <div className="card_container">
+        <div
+          className="card_container"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, 300px)',
+            justifyContent: 'center',
+            gap: '20px',
+          }}
+        >
           <ProductCard>
             <Card product={data[1]} addToCartMethod={addToCart} />
           </ProductCard>
