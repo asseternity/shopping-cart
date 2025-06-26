@@ -6,7 +6,7 @@ It fetches data from an API and adds the data to the shopping cart with the pres
 
 Mock of a shopping website. Uses useState, useEffect, async/await and other React and JS methods.
 
-## Check it out here: https://669e57757a83614174e9db95--asseternity-shop.netlify.app/shop
+## Check it out here: https://asseternity-shop.netlify.app/
 
 Regards,
 Asseternity
